@@ -1,34 +1,48 @@
-// Randomly select an episode number for Star Wars
-var text = d3.select(".star-wars")
-  .text(Math.floor(Math.random() * 9) + 1);
+// Get a reference to the table body 
+var tbody = d3.select('tbody');
 
-// Select the upvote and downvote buttons
-var upvote = d3.select(".upvote");
-var downvote = d3.select(".downvote");
+//  console.log the UFO data from data.js and print 
+console.log(data);
 
-// Select the counter h3 element
-var counter = d3.select(".counter");
-
-// Use D3 `.on` to attach a click handler for the upvote
-upvote.on("click", function() {
-  // Select the current count
-  var currentCount = parseInt(counter.text());
-
-  // Upvotes should increment the counter
-  currentCount += 1;
-
-  // Set the counter h3 text to the new count
-  counter.text(currentCount);
+data.forEach((ufoSightings) => {
+    var row = tbody.append("tr");
+    Object.entries(ufoSightings).forEach(([key,value]) => {
+        var cell = row.append("td");
+        cell.text(value)
+    });
 });
 
-// Use d3 `.on` to attach a click handler for the downvote
-downvote.on("click", function() {
-  // Select the current count
-  var currentCount = parseInt(counter.text());
+// Search and filter form 
+// Define  
+var ufos = data;
+var button = d3.select("#filter-btn");
+var form = d3.select("#form");
 
-  // Downvotes should decrement the counter
-  currentCount -= 1;
+// Create event handlers 
+button.on("click", runEnter);
+form.on("submit",runEnter);
 
-  // Set the counter h3 text to the new count
-  counter.text(currentCount);
-});
+// Complete the event function from the form 
+function runEnter() {
+    d3.event.preventDefault();
+    var inputElement = d3.select("#datetime");
+    var inputValue = inputElement.property("value");
+    var inputElement2 = d3.select("#city");
+    var inputValue2 = inputElement2.property("value");
+    console.log(inputValue);
+    // console.log(ufos);
+    var filteredData = ufos.filter(ufo => (inputValue ==="" || ufo.datetime === inputValue)&&
+    (inputValue2 ===""|| ufo.city === inputValue2));
+    console.log(filteredData);
+    
+
+    var tbody = d3.select('tbody');
+    tbody.html("");
+    filteredData.forEach((ufoSightings) => {
+        var row = tbody.append("tr");
+        Object.entries(ufoSightings).forEach(([key,value]) => {
+            var cell = row.append("td");
+            cell.text(value)
+        });
+    });
+}
