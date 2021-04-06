@@ -20,7 +20,7 @@ var form = d3.select("#form");
 
 // Create event handlers 
 button.on("click", runEnter);
-form.on("submit", runEnter);
+form.on("submit",runEnter);
 
 // Complete the event function from the form 
 function runEnter() {
@@ -31,5 +31,15 @@ function runEnter() {
   // console.log(ufos);
   var filteredData = ufos.filter(ufo => ufo.datetime === inputValue);
   console.log(filteredData);
-};
+
+  var tbody = d3.select('tbody');
+  tbody.html("");
+  filteredData.forEach((ufoSightings) => {
+      var row = tbody.append("tr");
+      Object.entries(ufoSightings).forEach(([key,value]) => {
+          var cell = row.append("td");
+          cell.text(value)
+      });
+  });
+  };
 
