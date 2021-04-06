@@ -23,23 +23,23 @@ button.on("click", runEnter);
 form.on("submit",runEnter);
 
 // Complete the event function from the form 
-function runEnter() {
-  d3.event.preventDefault();
-  var inputElement = d3.select("#datetime");
-  var inputValue = inputElement.property("value");
-  console.log(inputValue);
-  // console.log(ufos);
-  var filteredData = ufos.filter(ufo => ufo.datetime === inputValue);
-  console.log(filteredData);
+function runEnter() {=
+    d3.event.preventDefault();
+    var inputElement = d3.select("#datetime");
+    var inputValue = inputElement.property("value");
+    console.log(inputValue);
+    // console.log(ufos);
+    var filteredData = ufos.filter(ufo => ufo.datetime === inputValue);
+    console.log(filteredData);
 
-  var tbody = d3.select('tbody');
-  tbody.html("");
-  filteredData.forEach((ufoSightings) => {
-      var row = tbody.append("tr");
-      Object.entries(ufoSightings).forEach(([key,value]) => {
-          var cell = row.append("td");
-          cell.text(value)
-      });
-  });
-  };
+    var tbody = d3.select('tbody');
+    tbody.html("");
+    filteredData.forEach((ufoSightings) => {
+        var row = tbody.append("tr");
+        Object.entries(ufoSightings).forEach(([key,value]) => {
+            var cell = row.append("td");
+            cell.text(value)
+        });
+    });
+    };
 
