@@ -29,10 +29,19 @@ function runEnter() {
     var inputValue = inputElement.property("value");
     var inputElement2 = d3.select("#city");
     var inputValue2 = inputElement2.property("value");
+    var inputElement3 = d3.select("#state");
+    var inputValue3 = inputElement3.property("value");
+    var inputElement4 = d3.select("#country");
+    var inputValue4 = inputElement4.property("value");
+    var inputElement5 = d3.select("#shape");
+    var inputValue5 = inputElement5.property("value");
     console.log(inputValue);
     // console.log(ufos);
-    var filteredData = ufos.filter(ufo => (inputValue ==="" || ufo.datetime === inputValue)&&
-    (inputValue2 ===""|| ufo.city === inputValue2));
+    var filteredData = ufos.filter(ufo => (inputValue ===""|| ufo.datetime === inputValue)&&
+                                          (inputValue2 ===""|| ufo.city === inputValue2)&&
+                                          (inputValue3 ===""|| ufo.state === inputValue3)&&
+                                          (inputValue4 ===""|| ufo.country === inputValue4)&&
+                                          (inputValue5 ===""|| ufo.shape === inputValue5));
     console.log(filteredData);
     
 
