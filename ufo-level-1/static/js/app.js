@@ -23,7 +23,7 @@ button.on("click", runEnter);
 form.on("submit",runEnter);
 
 // Complete the event function from the form 
-function runEnter() {=
+function runEnter() {
     d3.event.preventDefault();
     var inputElement = d3.select("#datetime");
     var inputValue = inputElement.property("value");
